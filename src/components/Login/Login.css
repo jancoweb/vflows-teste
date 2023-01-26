@@ -1,23 +1,19 @@
+.Login-container, .Form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .Login-container {
   background-color: #fff;
   width: 500px;
   height: 400px;
   box-shadow: 3px 3px 10px #000;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .Logo-container img {
   width: 200px;
   margin-bottom: 30px;
-}
-.Form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .Form-container h2 {
   font-size: 22px;
@@ -49,5 +45,9 @@
   color: #fff;
   border: none;
   height: 26px;
-  box-shadow: 3px 3px 5px #000;
+  box-shadow: 3px 3px 8px #000;
+}
+.Form-container form button:hover {
+  cursor: pointer;
+  background-color: #01833b;
 }
