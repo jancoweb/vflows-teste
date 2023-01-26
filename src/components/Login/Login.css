@@ -1,0 +1,53 @@
+.Login-container {
+  background-color: #fff;
+  width: 500px;
+  height: 400px;
+  box-shadow: 3px 3px 10px #000;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Logo-container img {
+  width: 200px;
+  margin-bottom: 30px;
+}
+.Form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Form-container h2 {
+  font-size: 22px;
+}
+.Form-container form {
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+}
+.Form-container form .Input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  width: 350px;
+}
+.Form-container form label {
+  font-weight: bold;
+}
+.Form-container form input {
+  height: 20px;
+  font-size: 18px;
+  padding:4px;
+}
+.Form-container form button {
+  width: 250px;
+  background-color: #03A64D;
+  color: #fff;
+  border: none;
+  height: 26px;
+  box-shadow: 3px 3px 5px #000;
+}
