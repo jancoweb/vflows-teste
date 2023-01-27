@@ -1,7 +1,16 @@
+import { useNavigate } from "react-router-dom";
 
 function Table() {
 
-  const contratos = [{ id: 1, name: 'Frigorifico do mané', codigo: '129999670', ret: '60%' }, { id: 2, name: 'Geladeiras e cia', codigo: '129999670', ret: '60%' }, { id: 1, name: 'Testando nome de fornecedor grande', codigo: '129999670', ret: '60%' }, { id: 1, name: 'Lojas americanas', codigo: '129999670', ret: '60%' }]
+  const navigate = useNavigate();
+
+  async function handleOpenContract(e) {
+    e.preventDefault();
+
+    navigate(`/home/${e.target.id}`)
+  }
+
+  const contratos = [{ id: 1, name: 'Frigorifico do mané', codigo: '129999670', ret: '60%' }, { id: 2, name: 'Geladeiras e cia', codigo: '129999670', ret: '60%' }, { id: 3, name: 'Testando nome de fornecedor grande', codigo: '129999670', ret: '60%' }, { id: 4, name: 'Lojas americanas', codigo: '129999670', ret: '60%' }]
 
   return (
     <div className="content-container">
@@ -21,7 +30,7 @@ function Table() {
               </div>
               <span>{contrato.codigo}</span>
               <span className="blue-bg">{contrato.ret}</span>
-              <span className="material-symbols-outlined details">search</span>
+              <button id={contrato.id} className="material-symbols-outlined details" onClick={(e) => handleOpenContract(e)}>search</button>
             </div>
           )
         }) : <div className="empty-msg"><h1>CNPJ NÃO POSSUI CONTRATOS ATIVOS</h1></div>
