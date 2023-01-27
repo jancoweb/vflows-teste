@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../../context/useGlobalContext";
 
 function Table() {
 
+  const { contratos } = useGlobalContext()
   const navigate = useNavigate();
-
+  console.log(contratos)
   async function handleOpenContract(e) {
     e.preventDefault();
 
     navigate(`/home/${e.target.id}`)
   }
 
-  const contratos = [{ id: 1, name: 'Frigorifico do mané', codigo: '129999670', ret: '60%' }, { id: 2, name: 'Geladeiras e cia', codigo: '129999670', ret: '60%' }, { id: 3, name: 'Testando nome de fornecedor grande', codigo: '129999670', ret: '60%' }, { id: 4, name: 'Lojas americanas', codigo: '129999670', ret: '60%' }]
 
   return (
     <div className="content-container">

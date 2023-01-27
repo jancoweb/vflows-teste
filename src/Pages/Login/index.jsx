@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import checkCNPJ from '../../services/checkCNPJ';
 import { saveItem } from '../../services/localStorage';
 import { useState } from 'react';
+import { useGlobalContext } from '../../context/useGlobalContext';
 
 function Login() {
-
+  const { setContratos } = useGlobalContext();
   const [error, setError] = useState('')
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ function Login() {
       }, 3000);
       return
     }
+    saveItem('userCNPJ', cnpj)
 
     // integração ainda faltaaa
     async function getUserContracts(cnpj) {
@@ -30,7 +32,7 @@ function Login() {
           cnpj: cnpj
         });
         const contratos = [...response.data]
-        saveItem(contratos)
+        setContratos(contratos)
 
         navigate('/home');
       } catch (error) {

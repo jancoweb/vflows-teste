@@ -1,9 +1,9 @@
 export function saveItem(key, value) {
-  localStorage.setItem(key, value)
+  return localStorage.setItem(key, value)
 }
 export function getItem(key) {
-  localStorage.getItem(key)
+  return localStorage.getItem(key)
 }
 export function clearAll() {
-  localStorage.clear();
+  return localStorage.clear();
 }
