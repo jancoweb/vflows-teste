@@ -3,11 +3,14 @@ import { GlobalContext } from './globalContext'
 
 export function useGlobalProvider() {
 
-  const [contratos, setContratos] = useState([])
+  const [contratos, setContratos] = useState([]);
+  const [notaFiscal, setNotafiscal] = useState({})
 
   return {
     contratos,
-    setContratos
+    setContratos,
+    notaFiscal,
+    setNotafiscal
   }
 }
 

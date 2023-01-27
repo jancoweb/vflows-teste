@@ -6,6 +6,7 @@ function Table() {
   const { contratos } = useGlobalContext()
   const navigate = useNavigate();
   console.log(contratos)
+
   async function handleOpenContract(e) {
     e.preventDefault();
 
