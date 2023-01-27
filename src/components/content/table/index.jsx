@@ -1,7 +1,7 @@
 
 function Table() {
 
-  const contratos = [{ id: 1, name: 'Geladeiras', codigo: '129999670', ret: '60%' }]
+  const contratos = [{ id: 1, name: 'Frigorifico do mané', codigo: '129999670', ret: '60%' }, { id: 2, name: 'Geladeiras e cia', codigo: '129999670', ret: '60%' }, { id: 1, name: 'Testando nome de fornecedor grande', codigo: '129999670', ret: '60%' }, { id: 1, name: 'Lojas americanas', codigo: '129999670', ret: '60%' }]
 
   return (
     <div className="content-container">

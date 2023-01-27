@@ -1,5 +1,5 @@
-import HomeContent from './content'
-import HomeHeader from './header'
+import HomeContent from '../../components/Main/content'
+import HomeHeader from '../../components/Main/header'
 import './home.css'
 
 function Home() {
