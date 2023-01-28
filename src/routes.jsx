@@ -20,7 +20,7 @@ function MyRoutes() {
           <Route path='/' element={<Login />} />
           <Route element={<ProtectedRoutes redirectTo={'/'} />}>
             <Route path='/home' element={<Home />} />
-            {/* <Route path='/home/:id' element={<DadosNF />} /> */}
+            <Route path='/nota-fiscal' element={<DadosNF />} />
           </Route>
         </Routes>
       </Router>

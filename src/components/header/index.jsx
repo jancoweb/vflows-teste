@@ -1,7 +1,10 @@
 import logo from '../../assets/logo.png'
+import { getItem } from '../../services/localStorage'
 import './index.css'
 
 function HomeHeader() {
+  const user = JSON.parse(getItem('user'))
+
   return (
     <div className="Header-container">
       <header>
@@ -11,11 +14,11 @@ function HomeHeader() {
         </div>
         <div className="Header-content">
           <div className='User-data'>
-            <p><span className='User-data-text'>Razão Social:</span> Nome do fornecedor </p>
-            <p><span className='User-data-text'>Nome fantasia:</span> Nome do fornecedor </p>
+            <p><span className='User-data-text'>Razão Social:</span> {user.razaoSocial}</p>
+            <p><span className='User-data-text'>Nome fantasia:</span> {user.nomeFantasia} </p>
           </div>
           <div className="User-CNPJ">
-            <p><span className='User-data-text'>CNPJ:</span> 00.000.000/000-00 </p>
+            <p><span className='User-data-text'>CNPJ:</span> {user.cnpj} </p>
           </div>
         </div>
       </header>

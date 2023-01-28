@@ -26,17 +26,26 @@ function Login() {
     }
 
     // remover antes de finalizar
-    saveItem('user', cnpj);
+    const user = {
+      cnpj: cnpj,
+      razaoSocial: 'EMPRESA TESTE',
+      nomeFantasia: 'EMPRESA QUE ESTOU TESTANDO'
+    }
+    saveItem('user', JSON.stringify(user));
 
     async function getUserContracts(cnpj) {
       try {
         const response = await api.post('/login', {
           cnpj: cnpj
         });
-        const contratos = [...response.data];
-
+        const contratos = [...response.data.contratos];
+        const user = {
+          cnpj: cnpj,
+          razaoSocial: response.data.user.razaoSocial,
+          nomeFantasia: response.data.user.nomeFantasia
+        }
         setContratos(contratos);
-        saveItem('user', cnpj);
+        saveItem('user', JSON.stringify(user));
         navigate('/home');
 
       } catch (error) {

@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../context/useGlobalContext";
-import { clearAll } from "../../../services/localStorage";
+import { clearAll, getItem } from "../../../services/localStorage";
+import DetailModal from "../../modal/details";
+import ErrorModal from "../../modal/error";
 
 function Table() {
-  const [error, setError] = useState('');
-  const { contratos, setNotaFiscal, notaFiscal } = useGlobalContext();
+
+  const { contratos, setNotaFiscal, notaFiscal, modal, setModal, error, setError, details, setDetails } = useGlobalContext();
   const navigate = useNavigate();
 
   function handlePrev() {
@@ -22,26 +23,27 @@ function Table() {
   function handleNext() {
 
     if (notaFiscal.length > 1) {
-      setNotaFiscal([]);
-      console.log('erro')
       setError('Selecione apenas 1 contrato');
       setTimeout(() => {
         window.location.reload()
       }, 2000)
+      return
     }
     if (notaFiscal.length == 0) {
       setError('Selecione pelo menos 1 contrato');
       setTimeout(() => {
         window.location.reload()
       }, 2000)
+      return
     }
 
+    navigate(`/nota-fiscal`)
   }
 
-  async function handleOpenContract(e) {
-    e.preventDefault();
-
-    navigate(`/home/${e.target.id}`)
+  function handleDetails(e) {
+    const id = e.target.id;
+    const detail = contratos.find((contrato) => { return contrato.id == id });
+    return setDetails(detail)
   }
 
   return (
@@ -52,13 +54,8 @@ function Table() {
         <span>Retenção Técnica</span>
         <span>Detalhes</span>
       </div>
-      {error &&
-        <div className="error-modal-container">
-          <div className="error-modal">
-            <span>{error}</span>
-          </div>
-        </div>
-      }
+      {details && <DetailModal />}
+      {error && <ErrorModal />}
       <div className="data-container">
         {contratos.length > 0 ? contratos.map(contrato => {
           return (
@@ -69,7 +66,7 @@ function Table() {
               </div>
               <span>{contrato.codigo}</span>
               <span className="blue-bg">{contrato.ret}</span>
-              <button id={contrato.id} className="material-symbols-outlined details" onClick={(e) => handleOpenContract(e)}>search</button>
+              <button id={contrato.id} className="material-symbols-outlined details" onClick={(e) => handleDetails(e)}>search</button>
             </div>
 
           )

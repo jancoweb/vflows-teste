@@ -106,7 +106,7 @@ button.next {
   text-align: center;
   margin-top: 20px;
 }
-.error-modal-container {
+.error-modal-container, .detail-modal-container {
   background: rgba(61, 61, 61, 0.478);
   font-family: 'Rubik', sans-serif;
   height: 100vh;
@@ -134,4 +134,35 @@ button.next {
   z-index: 3;
   color: red;
   font-size: 30px;
+}
+
+.detail-modal-card {
+  background-color: white;
+  text-align: center;
+  border-radius: 20px;
+  height: 400px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 40px;
+  position: relative;
+  z-index: 3;
+  font-size: 18px;
+}
+.detail-modal-card span {
+  font-weight: normal;
+}
+.detail-modal-card h1 {
+  margin-bottom: 30px;
+}
+.detail-modal-card .close {
+  background-color: red;
+  border: none;
+  color: #fff;
+  padding: 8px;
+}
+.close:hover {
+  cursor: pointer;
 }
