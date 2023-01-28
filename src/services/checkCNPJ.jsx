@@ -1,11 +1,8 @@
-function checkCNPJ(cnpj) {
-  // buscar no banco de dados
+export default function checkCNPJ(cnpj) {
 
-  if (cnpj.length < 13) return false
+  if (cnpj.length == 13) {
+    return true
+  }
 
-  // const found = 'search cnpj'
-  // if (found == true) return true
-  // return false
+  return false
 }
-
-export default checkCNPJ

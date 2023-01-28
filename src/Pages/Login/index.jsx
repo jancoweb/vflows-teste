@@ -5,6 +5,7 @@ import checkCNPJ from '../../services/checkCNPJ';
 import { saveItem } from '../../services/localStorage';
 import { useState } from 'react';
 import { useGlobalContext } from '../../context/useGlobalContext';
+import api from '../../services/api';
 
 function Login() {
   const { setContratos } = useGlobalContext();
@@ -23,18 +24,21 @@ function Login() {
       }, 3000);
       return
     }
-    saveItem('userCNPJ', cnpj)
 
-    // integração ainda faltaaa
+    // remover antes de finalizar
+    saveItem('user', cnpj);
+
     async function getUserContracts(cnpj) {
       try {
         const response = await api.post('/login', {
           cnpj: cnpj
         });
-        const contratos = [...response.data]
-        setContratos(contratos)
+        const contratos = [...response.data];
 
+        setContratos(contratos);
+        saveItem('user', cnpj);
         navigate('/home');
+
       } catch (error) {
         console.log(error.message)
       }

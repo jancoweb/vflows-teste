@@ -9,10 +9,6 @@ function HomeContent() {
         <p>Contratos vinculados</p>
       </div>
       <Table />
-      <div className="btn-container">
-        <button className='prev'>Anterior</button>
-        <button className='next'>Próximo</button>
-      </div>
     </div>
   )
 }
