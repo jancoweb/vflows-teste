@@ -13,21 +13,24 @@ function Login() {
 
   async function handleLogin(data) {
     const cnpj = data.cnpj
-    if (cnpj === '' || cnpj.length !== 13) {
+    if (cnpj.length !== 13) {
       formRef.current.setFieldError('cnpj', 'CNPJ inválido')
       setTimeout(() => {
         formRef.current.setFieldError('cnpj', '')
       }, 3000)
+      return
     }
 
-    // remover antes de finalizar
+    // EXEMPLO DE LOGIN BEM SUCEDIDO
     const user = {
       cnpj: cnpj,
       razaoSocial: 'EMPRESA TESTE',
       nomeFantasia: 'EMPRESA QUE ESTOU TESTANDO'
     }
     saveItem('user', JSON.stringify(user));
+    navigate('/home');
 
+    // EXEMPLO DE LOGIN COM VALIDAÇÃO DA API
     async function getUserData(cnpj) {
       try {
         const response = await api.post('/login', {
@@ -45,6 +48,12 @@ function Login() {
 
       } catch (error) {
         console.log(error.message)
+
+        // EXEMPLO DE ERRO CASO NÃO CONSIGA LOGIN
+        // formRef.current.setFieldError('cnpj', 'CNPJ não encontrado')
+        // setTimeout(() => {
+        //   formRef.current.setFieldError('cnpj', '')
+        // }, 3000)
       }
     }
     getUserData(cnpj)
