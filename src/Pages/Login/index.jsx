@@ -1,26 +1,23 @@
 import './Login.css'
 import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
-import checkCNPJ from '../../services/checkCNPJ';
 import { saveItem } from '../../services/localStorage';
-import { useGlobalContext } from '../../context/useGlobalContext';
 import api from '../../services/api';
+import { Form } from '@unform/web';
+import Input from '../../components/Input/input';
+import { useRef } from 'react';
 
 function Login() {
-  const { error, setError } = useGlobalContext()
   const navigate = useNavigate();
+  const formRef = useRef(null);
 
-  async function handleLogin(e) {
-    e.preventDefault();
-
-    const cnpj = e.target.cnpj.value;
-    const check = checkCNPJ(cnpj);
-    if (check == false) {
-      setError('CNPJ inválido');
+  async function handleLogin(data) {
+    const cnpj = data.cnpj
+    if (cnpj === '' || cnpj.length !== 13) {
+      formRef.current.setFieldError('cnpj', 'CNPJ inválido')
       setTimeout(() => {
-        setError('')
-      }, 3000);
-      return
+        formRef.current.setFieldError('cnpj', '')
+      }, 3000)
     }
 
     // remover antes de finalizar
@@ -61,21 +58,13 @@ function Login() {
         </div>
         <div className="Form-container">
           <h2>PAGAMENTO DE FORNECEDOR</h2>
-          <form onSubmit={(e) => handleLogin(e)}>
-            <div className='Input-container'>
-              <label>CNPJ</label>
-              {/* INPUT PRA MUDAR COM UNFORM */}
-              <input type="text" name='cnpj' />
+          <Form ref={formRef} onSubmit={(e) => handleLogin(e)}>
+            <label>CNPJ</label>
+            <Input type="text" name='cnpj' />
+            <div className='login-btn'>
+              <button type='submit'>Acessar</button>
             </div>
-            {
-              error &&
-              <>
-                <span style={{ color: 'red' }}>{error}</span>
-                <br />
-              </>
-            }
-            <button type='submit'>Acessar</button>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

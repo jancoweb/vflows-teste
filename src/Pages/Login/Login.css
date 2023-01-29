@@ -22,24 +22,26 @@
   border: 1px solid lightgray;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px 30px;
 }
-.Form-container form .Input-container {
+.Form-container .Input-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
   width: 350px;
 }
-.Form-container form label {
+.Form-container label {
   font-weight: bold;
 }
 .Form-container form input {
-  height: 20px;
-  font-size: 18px;
-  padding:4px;
+  height: 25px;
+  font-size: 16px;
+  padding:6px;
 }
-.Form-container form button {
+.login-btn {
+  display: flex;
+  justify-content: center;
+}
+.login-btn button {
   width: 250px;
   background-color: #03A64D;
   color: #fff;
@@ -47,7 +49,7 @@
   height: 26px;
   box-shadow: 3px 3px 8px #000;
 }
-.Form-container form button:hover {
+.login-btn button:hover {
   cursor: pointer;
   background-color: #01833b;
 }
