@@ -3,13 +3,11 @@ import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import checkCNPJ from '../../services/checkCNPJ';
 import { saveItem } from '../../services/localStorage';
-import { useState } from 'react';
 import { useGlobalContext } from '../../context/useGlobalContext';
 import api from '../../services/api';
 
 function Login() {
-  const { setContratos } = useGlobalContext();
-  const [error, setError] = useState('')
+  const { error, setError } = useGlobalContext()
   const navigate = useNavigate();
 
   async function handleLogin(e) {
@@ -33,18 +31,18 @@ function Login() {
     }
     saveItem('user', JSON.stringify(user));
 
-    async function getUserContracts(cnpj) {
+    async function getUserData(cnpj) {
       try {
         const response = await api.post('/login', {
           cnpj: cnpj
         });
-        const contratos = [...response.data.contratos];
+        // coletando informações do usuário da API
         const user = {
           cnpj: cnpj,
           razaoSocial: response.data.user.razaoSocial,
           nomeFantasia: response.data.user.nomeFantasia
         }
-        setContratos(contratos);
+        // salvando informações do usuário no localStorage
         saveItem('user', JSON.stringify(user));
         navigate('/home');
 
@@ -52,7 +50,7 @@ function Login() {
         console.log(error.message)
       }
     }
-    getUserContracts(cnpj)
+    getUserData(cnpj)
   }
 
   return (

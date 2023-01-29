@@ -1,13 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../context/useGlobalContext";
-import { clearAll, getItem } from "../../../services/localStorage";
+import api from "../../../services/api";
+import { clearAll, getItem, saveItem } from "../../../services/localStorage";
 import DetailModal from "../../modal/details";
 import ErrorModal from "../../modal/error";
 
 function Table() {
 
-  const { contratos, setNotaFiscal, notaFiscal, modal, setModal, error, setError, details, setDetails } = useGlobalContext();
+  const { contratos, setContratos, setNotaFiscal, notaFiscal, modal, setModal, error, setError, details, setDetails } = useGlobalContext();
   const navigate = useNavigate();
+
+  async function getUserContracts(cnpj) {
+    try {
+      const response = await api.get('/user-contracts', {
+        cnpj: cnpj
+      });
+      // array de contratos vindo da API
+      const data = response.data.contratos;
+      setContratos(data);
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+  const user = JSON.parse(getItem('user'));
+  getUserContracts(user.cnpj)
 
   function handlePrev() {
     clearAll();
@@ -36,7 +53,7 @@ function Table() {
       }, 2000)
       return
     }
-
+    saveItem('notaFiscal', JSON.stringify(notaFiscal[0]));
     navigate(`/nota-fiscal`)
   }
 

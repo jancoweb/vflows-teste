@@ -1,3 +1,113 @@
 .content-title {
   width: 100%;
 }
+.Home-wrapper{
+  height: 90vh;
+}
+.nf-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+  border: 1px solid red;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 0 80px;
+}
+.nf-header {
+  display: flex;
+  flex-direction: column;
+}
+.nf-title {
+  display: flex;
+  margin: 20px 0;
+  gap: 300px;
+  font-weight: bold;
+}
+.nf-title span{
+  font-weight: normal;
+}
+.nf-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+}
+.nf-data div {
+  display: flex;
+  flex-direction: column;
+}
+.nf-data div input {
+  height: 25px;
+  font-size: 18px;
+  padding: 4px;
+}
+.nf-data div label {
+  font-weight: bold;
+}
+
+.taxes-checkbox-container{
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.hidden-form-container {
+  border: 1px solid red;
+  margin-top: 20px;
+  border-radius: 8px;
+  padding: 10px;
+}
+.hidden-form {
+  display: flex;
+  justify-content: space-around;
+}
+.hidden-form div {
+  display: flex;
+  flex-direction: column;
+}
+.hidden-form input {
+  width: 120px;
+  font-size: 18px;
+  height: 20px;
+  padding: 5px;
+}
+.inborder-text {
+  position: relative;
+  top: -20px;
+  background-color: #fff;
+  width: 60px;
+  padding: 0 0 0 5px;
+}
+
+.ret {
+  margin-top: 40px;
+}
+.hidden-form2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.hidden-form2 div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.hidden-form2 div input {
+  width: 70%;
+  background-color: lightgray;
+  border: none;
+  height: 20px;
+  padding: 5px;
+  font-size: 18px;
+  outline: none;
+}
+
+.btn-insert {
+  width: 250px;
+  height: 40px;
+}
+.btn-insert:hover {
+  cursor: pointer;
+}
