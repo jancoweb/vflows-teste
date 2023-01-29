@@ -7,7 +7,7 @@ import ErrorModal from "../../modal/error";
 
 function Table() {
 
-  const { contratos, setContratos, setNotaFiscal, notaFiscal, modal, setModal, error, setError, details, setDetails } = useGlobalContext();
+  const { contratos, setContratos, setNotaFiscal, notaFiscal, error, setError, details, setDetails } = useGlobalContext();
   const navigate = useNavigate();
 
   async function getUserContracts(cnpj) {

@@ -1,9 +1,8 @@
 import { useGlobalContext } from "../../context/useGlobalContext";
 
 export default function DetailModal() {
-  const { setModal, details, setDetails } = useGlobalContext();
+  const { details, setDetails } = useGlobalContext();
   function handleClose() {
-    setModal(false)
     setDetails()
     return
   }
