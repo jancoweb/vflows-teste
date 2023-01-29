@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { Form } from "@unform/web";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeHeader from "../../components/header";
+import Input from "../../components/Input/input";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getItem, removeItem } from "../../services/localStorage";
 import './index.css'
 
 
 function DadosNF() {
+  const formRef = useRef(null);
   const { setNotaFiscal } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -28,6 +31,9 @@ function DadosNF() {
     removeItem('notaFiscal')
     return navigate('/home')
   }
+  function handleNext(data) {
+    console.log(data)
+  }
 
   return (
     <div className="Home-wrapper">
@@ -35,88 +41,88 @@ function DadosNF() {
       <div className='content-title'>
         <p>Dados da nota fiscal</p>
       </div>
-      <div className="nf-container">
+      <Form onSubmit={handleNext} className="nf-container">
         <div className="nf-header">
           <div className="nf-title">
             <p>Código do contrato: <span>{nf.codigo}</span></p>
             <p>{nf.name}</p>
           </div>
           <div className="data">
-            <form className="nf-data">
+            <div className="nf-data">
               <div>
                 <label>Número da nota</label>
-                <input type="text" />
+                <Input type="text" name="nf-number" />
               </div>
               <div>
                 <label>Data de emissão</label>
-                <input type="date" />
+                <Input type="date" name="nf-emission-date" />
               </div>
               <div>
                 <label>Data de vencimento</label>
-                <input type="date" />
+                <Input type="date" name="nf-due-date" />
               </div>
               <div>
-                <label>Valor</label>
-                <input type="text" />
+                <label>Valor em R$</label>
+                <Input type="text" name="nf-value" />
               </div>
-            </form>
+            </div>
           </div>
         </div>
         <div className="taxes">
-          <form className="taxes-checkbox-container" onChange={(e) => handleShowMenu(e)}>
+          <div className="taxes-checkbox-container" onChange={(e) => handleShowMenu(e)}>
             <input type="checkbox" name="taxes" />
             <label>Retenção de impostos</label>
-          </form>
+          </div>
           {taxes &&
             <div className="hidden-form-container">
               <p className="inborder-text">Dados</p>
-              <form className="hidden-form">
+              <div className="hidden-form">
                 <div>
                   <label>ISSQN</label>
-                  <input type="text" name="issqn" />
+                  <Input type="text" name="issqn" />
                 </div>
                 <div>
                   <label>IRFF</label>
-                  <input type="text" name="irff" />
+                  <Input type="text" name="irff" />
                 </div>
                 <div>
                   <label>CSLL</label>
-                  <input type="text" name="csll" />
+                  <Input type="text" name="csll" />
                 </div>
                 <div>
                   <label>COFINS</label>
-                  <input type="text" name="cofins" />
+                  <Input type="text" name="cofins" />
                 </div>
                 <div>
                   <label>INSS</label>
-                  <input type="text" name="inss" />
+                  <Input type="text" name="inss" />
                 </div>
                 <div>
                   <label>PIS</label>
-                  <input type="text" name="pis" />
+                  <Input type="text" name="pis" />
                 </div>
-              </form>
+              </div>
             </div>
           }
         </div>
         <div className="ret">
-          <form className="taxes-checkbox-container" onChange={(e) => handleShowMenu(e)}>
+          <div className="taxes-checkbox-container" onChange={(e) => handleShowMenu(e)}>
             <input type="checkbox" name="ret" />
             <label>Retenção Técnica</label>
-          </form>
+          </div>
           {ret &&
             <div className="hidden-form-container">
               <p className="inborder-text">Dados</p>
-              <form className="hidden-form2">
+              <div className="hidden-form2">
                 <div>
                   <label>Valor</label>
-                  <input type="text" />
+                  <Input type="text" name='rt-value' />
                 </div>
                 <div>
                   <label>Percentual</label>
-                  <input type="text" />
+                  <Input type="text" name='rt-percentage' />
                 </div>
-              </form>
+              </div>
             </div>
           }
         </div>
@@ -124,10 +130,10 @@ function DadosNF() {
           <button className="btn-insert">ANEXAR NOTA FISCAL</button>
         </div>
         <div className="btn-container">
-          <button className='prev' onClick={(e) => handlePrev()}>Anterior</button>
-          <button className='next' onClick={(e) => handlePrev()}>Próximo</button>
+          <button className='prev' onClick={() => handlePrev()}>Anterior</button>
+          <button className='next' type="submit">Próximo</button>
         </div>
-      </div>
+      </Form>
     </div>
   )
 }
