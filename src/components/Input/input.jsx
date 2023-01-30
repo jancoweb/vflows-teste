@@ -10,7 +10,7 @@ export default function Input({ name, ...rest }) {
   }, [fieldName, registerField])
 
   return (
-    <div className='Input-container'>
+    <div className='input-container'>
       <input ref={inputRef} {...rest} />
       <br />
       {

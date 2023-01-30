@@ -1,34 +1,37 @@
-header{
+.header-container {
+  width: 100%;
+  margin: 15px;
+}
+
+header {
   display: flex;
   flex-direction: column;
 }
-header .Logo-Title{
+header .logo-title {
   display: flex;
   align-items: center;
   margin: 0 20px 20px 20px;
   font-size: 25px;
 }
-header .Logo-Title h1 {
+header .logo-title h1 {
   margin: 0 120px;
 }
-header .Logo-Title img {
+header .logo-title img {
   width: 150px;
   height: 100px;
 }
-.Header-container {
-  width: 100%;
-  margin: 15px;
-}
-.Header-content {
+header .header-content {
   border: 1px solid red;
   border-radius: 8px;
-  padding: 8px;
   display: flex;
   justify-content: space-between;
+  padding: 8px;
 }
-.Header-content p {
+header .header-content p {
   margin: 10px 20px;
 }
-.Header-content span {
+header .header-content span {
   font-weight: bold;
 }
+
+/*# sourceMappingURL=headerStyles.css.map */

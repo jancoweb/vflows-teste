@@ -1,0 +1,132 @@
+.Home-wrapper {
+  height: 100vh;
+}
+
+.content-title {
+  width: 100%;
+}
+
+.nf-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+  border: 1px solid red;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 0 80px;
+}
+.nf-container .nf-header {
+  display: flex;
+  flex-direction: column;
+}
+.nf-container .nf-header .nf-title {
+  display: flex;
+  margin: 20px 0;
+  gap: 300px;
+  font-weight: bold;
+}
+.nf-container .nf-header .nf-title span {
+  font-weight: normal;
+}
+.nf-container .nf-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+}
+.nf-container .nf-data div {
+  display: flex;
+  flex-direction: column;
+}
+.nf-container .nf-data div input {
+  height: 25px;
+  font-size: 18px;
+  padding: 4px;
+}
+.nf-container .nf-data div label {
+  font-weight: bold;
+}
+.nf-container .taxes .taxes-checkbox-container {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.nf-container .taxes .hidden-form-container {
+  border: 1px solid red;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px;
+}
+.nf-container .taxes .hidden-form-container p.inborder-text {
+  position: relative;
+  top: -20px;
+  background-color: #fff;
+  width: 60px;
+  padding: 0 0 0 5px;
+}
+.nf-container .taxes .hidden-form-container .hidden-form {
+  display: flex;
+  justify-content: space-around;
+}
+.nf-container .taxes .hidden-form-container .hidden-form div {
+  display: flex;
+  flex-direction: column;
+}
+.nf-container .taxes .hidden-form-container .hidden-form div input {
+  width: 120px;
+  font-size: 18px;
+  height: 20px;
+  padding: 5px;
+}
+.nf-container .ret {
+  margin-top: 40px;
+}
+.nf-container .ret .ret-checkbox-container {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.nf-container .ret .hidden-form-container {
+  border: 1px solid red;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px;
+}
+.nf-container .ret .hidden-form-container p.inborder-text {
+  position: relative;
+  top: -20px;
+  background-color: #fff;
+  width: 60px;
+  padding: 0 0 0 5px;
+}
+.nf-container .ret .hidden-form2 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.nf-container .ret .hidden-form2 div {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.nf-container .ret .hidden-form2 div input {
+  width: 420px;
+  background-color: rgb(211, 211, 211);
+  border: none;
+  height: 20px;
+  padding: 5px;
+  font-size: 18px;
+  outline: none;
+}
+.nf-container .btn-insert {
+  width: 250px;
+  height: 40px;
+}
+.nf-container .btn-insert:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=nfStyles.css.map */

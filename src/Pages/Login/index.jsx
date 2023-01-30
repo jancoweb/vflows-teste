@@ -1,4 +1,4 @@
-import './Login.css'
+import '../../styles/loginPageStyle/loginStyles.css'
 import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { saveItem } from '../../services/localStorage';
@@ -61,11 +61,11 @@ function Login() {
 
   return (
     <div className="Wrapper">
-      <div className='Login-container'>
-        <div className="Logo-container">
+      <div className='login-container'>
+        <div className="logo-container">
           <img src={logo} alt="" />
         </div>
-        <div className="Form-container">
+        <div className="form-container">
           <h2>PAGAMENTO DE FORNECEDOR</h2>
           <Form ref={formRef} onSubmit={(e) => handleLogin(e)}>
             <label>CNPJ</label>

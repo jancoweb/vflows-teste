@@ -1,0 +1,33 @@
+@mixin flex
+  display: flex
+@mixin flex-col
+  display: flex
+  flex-direction: column
+@mixin red-border
+  border: 1px solid red
+  border-radius: 8px
+
+.header-container
+  width: 100%
+  margin: 15px
+header
+  @include flex-col
+  .logo-title
+    @include flex
+    align-items: center
+    margin: 0 20px 20px 20px
+    font-size: 25px
+    h1
+      margin: 0 120px
+    img
+      width: 150px
+      height: 100px
+  .header-content
+    @include red-border
+    @include flex
+    justify-content: space-between
+    padding: 8px
+    p
+      margin: 10px 20px
+    span
+      font-weight: bold

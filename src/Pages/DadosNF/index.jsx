@@ -5,7 +5,7 @@ import HomeHeader from "../../components/header";
 import Input from "../../components/Input/input";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getItem, removeItem } from "../../services/localStorage";
-import './index.css'
+import '../../styles/DadosPage/nfStyles.css'
 
 
 function DadosNF() {
@@ -47,7 +47,7 @@ function DadosNF() {
             <p>Código do contrato: <span>{nf.codigo}</span></p>
             <p>{nf.name}</p>
           </div>
-          <div className="data">
+          <div>
             <div className="nf-data">
               <div>
                 <label>Número da nota</label>
@@ -106,7 +106,7 @@ function DadosNF() {
           }
         </div>
         <div className="ret">
-          <div className="taxes-checkbox-container" onChange={(e) => handleShowMenu(e)}>
+          <div className="ret-checkbox-container" onChange={(e) => handleShowMenu(e)}>
             <input type="checkbox" name="ret" />
             <label>Retenção Técnica</label>
           </div>

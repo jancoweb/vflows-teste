@@ -1,55 +1,62 @@
-.Login-container, .Form-container {
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px #000;
+  border-radius: 8px;
+}
+.login-container .logo-container img {
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Login-container {
-  background-color: #fff;
-  width: 500px;
-  height: 400px;
-  box-shadow: 3px 3px 10px #000;
-  border-radius: 8px;
-}
-.Logo-container img {
-  width: 200px;
-  margin-bottom: 30px;
-}
-.Form-container h2 {
+.form-container h2 {
   font-size: 22px;
 }
-.Form-container form {
-  border: 1px solid lightgray;
+.form-container form {
   display: flex;
   flex-direction: column;
+  border: 1px solid rgb(211, 211, 211);
   padding: 20px 30px;
 }
-.Form-container .Input-container {
+.form-container .input-container {
   display: flex;
   flex-direction: column;
   width: 350px;
 }
-.Form-container label {
+.form-container label {
   font-weight: bold;
 }
-.Form-container form input {
+.form-container input {
   height: 25px;
   font-size: 16px;
-  padding:6px;
+  padding: 6px;
 }
-.login-btn {
+.form-container .login-btn {
   display: flex;
   justify-content: center;
 }
-.login-btn button {
+.form-container .login-btn button {
   width: 250px;
-  background-color: #03A64D;
+  background-color: #03a64d;
   color: #fff;
   border: none;
   height: 26px;
   box-shadow: 3px 3px 8px #000;
 }
-.login-btn button:hover {
+.form-container .login-btn button:hover {
   cursor: pointer;
   background-color: #01833b;
 }
+
+/*# sourceMappingURL=loginStyles.css.map */

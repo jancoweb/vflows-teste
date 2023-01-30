@@ -1,4 +1,4 @@
-import './index.css'
+import '../../styles/contentStyle/contentStyles.css'
 import Table from './table'
 
 function HomeContent() {

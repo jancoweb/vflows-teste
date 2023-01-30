@@ -8,8 +8,8 @@ export default function DetailModal() {
   }
 
   return (
-    <div className="detail-modal-container">
-      <div className="detail-modal-card">
+    <div className="modal-container">
+      <div className="detail-modal">
         <h1 className="modal-title">Detalhes do contrato</h1>
         <div className="details-content">
           <div>
