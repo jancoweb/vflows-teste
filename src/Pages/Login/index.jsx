@@ -15,9 +15,6 @@ function Login() {
     const cnpj = data.cnpj
     if (cnpj.length !== 13) {
       formRef.current.setFieldError('cnpj', 'CNPJ inválido')
-      setTimeout(() => {
-        formRef.current.setFieldError('cnpj', '')
-      }, 3000)
       return
     }
 
