@@ -46,7 +46,6 @@ function DadosNF() {
 
   function handleSelect(e) {
     setSelected([...selected, e.target.files[0].name])
-    // console.log(e.target.files)
   }
   function handleDeleteSelected(e, target) {
     e.preventDefault()
