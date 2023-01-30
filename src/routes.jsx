@@ -1,4 +1,4 @@
-import Login from './Pages/Login'
+import LoginPage from './Pages/Login'
 import Home from './Pages/Home'
 import DadosNF from './Pages/DadosNF'
 import GlobalProvider from './context/globalContext'
@@ -17,7 +17,7 @@ function MyRoutes() {
     <GlobalProvider>
       <Router>
         <Routes>
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<LoginPage />} />
           <Route element={<ProtectedRoutes redirectTo={'/'} />}>
             <Route path='/home' element={<Home />} />
             <Route path='/nota-fiscal' element={<DadosNF />} />

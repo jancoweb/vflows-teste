@@ -7,11 +7,11 @@ import { Form } from '@unform/web';
 import Input from '../../components/Input/input';
 import { useRef } from 'react';
 
-function Login() {
+function LoginPage() {
   const navigate = useNavigate();
   const formRef = useRef(null);
 
-  async function handleLogin(data) {
+  async function login(data) {
     const cnpj = data.cnpj
     if (cnpj.length !== 13) {
       formRef.current.setFieldError('cnpj', 'CNPJ inválido')
@@ -48,9 +48,6 @@ function Login() {
 
         // EXEMPLO DE ERRO CASO NÃO CONSIGA LOGIN
         // formRef.current.setFieldError('cnpj', 'CNPJ não encontrado')
-        // setTimeout(() => {
-        //   formRef.current.setFieldError('cnpj', '')
-        // }, 3000)
       }
     }
     getUserData(cnpj)
@@ -64,7 +61,7 @@ function Login() {
         </div>
         <div className="form-container">
           <h2>PAGAMENTO DE FORNECEDOR</h2>
-          <Form ref={formRef} onSubmit={(e) => handleLogin(e)}>
+          <Form ref={formRef} onSubmit={(e) => login(e)}>
             <label>CNPJ</label>
             <Input type="text" name='cnpj' />
             <div className='login-btn'>
@@ -77,4 +74,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LoginPage
