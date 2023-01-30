@@ -1,20 +1,20 @@
 import { Form } from "@unform/web";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeHeader from "../../components/header";
 import Input from "../../components/Input/input";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getItem, removeItem } from "../../services/localStorage";
 import '../../styles/DadosPage/nfStyles.css'
-
+import CurrencyInput from "../../components/Input/currencyInput";
 
 function DadosNF() {
-  const formRef = useRef(null);
   const { setNotaFiscal } = useGlobalContext();
   const navigate = useNavigate();
 
   const [taxes, setTaxes] = useState(false);
   const [ret, setRet] = useState(false);
+  const [retValue, setRetValue] = useState();
 
   function handleShowMenu(e) {
     if (e.target.name == 'taxes') {
@@ -31,10 +31,17 @@ function DadosNF() {
     removeItem('notaFiscal')
     return navigate('/home')
   }
+
+  function handleMath(e) {
+    let v1 = e.target.value
+    let div = (nf.ret).replace('%', '')
+    let result = (v1 * 10) * (div / 100)
+    setRetValue(result.toFixed(2))
+  }
+
   function handleNext(data) {
     console.log(data)
   }
-
   return (
     <div className="Home-wrapper">
       <HomeHeader />
@@ -51,19 +58,19 @@ function DadosNF() {
             <div className="nf-data">
               <div>
                 <label>Número da nota</label>
-                <Input type="text" name="nf-number" />
+                <Input type="text" name="nfNumber" />
               </div>
               <div>
                 <label>Data de emissão</label>
-                <Input type="date" name="nf-emission-date" />
+                <Input type="date" name="emissionDate" />
               </div>
               <div>
                 <label>Data de vencimento</label>
-                <Input type="date" name="nf-due-date" />
+                <Input type="date" name="dueDate" />
               </div>
               <div>
                 <label>Valor em R$</label>
-                <Input type="text" name="nf-value" />
+                <CurrencyInput type="number" name="nfValue" onChange={(e) => handleMath(e)} />
               </div>
             </div>
           </div>
@@ -79,27 +86,27 @@ function DadosNF() {
               <div className="hidden-form">
                 <div>
                   <label>ISSQN</label>
-                  <Input type="text" name="issqn" />
+                  <CurrencyInput type="number" name="issqn" />
                 </div>
                 <div>
                   <label>IRFF</label>
-                  <Input type="text" name="irff" />
+                  <CurrencyInput type="number" name="irff" />
                 </div>
                 <div>
                   <label>CSLL</label>
-                  <Input type="text" name="csll" />
+                  <CurrencyInput type="number" name="csll" />
                 </div>
                 <div>
                   <label>COFINS</label>
-                  <Input type="text" name="cofins" />
+                  <CurrencyInput type="number" name="cofins" />
                 </div>
                 <div>
                   <label>INSS</label>
-                  <Input type="text" name="inss" />
+                  <CurrencyInput type="number" name="inss" />
                 </div>
                 <div>
                   <label>PIS</label>
-                  <Input type="text" name="pis" />
+                  <CurrencyInput type="number" name="pis" />
                 </div>
               </div>
             </div>
@@ -116,11 +123,11 @@ function DadosNF() {
               <div className="hidden-form2">
                 <div>
                   <label>Valor</label>
-                  <Input type="text" name='rt-value' />
+                  <Input type="text" name='retValue' readOnly defaultValue={`R$ ${retValue}`} />
                 </div>
                 <div>
                   <label>Percentual</label>
-                  <Input type="text" name='rt-percentage' />
+                  <Input type="text" name='retPercentage' defaultValue={nf.ret} readOnly />
                 </div>
               </div>
             </div>
