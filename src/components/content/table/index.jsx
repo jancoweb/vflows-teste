@@ -84,7 +84,7 @@ function Table() {
         }) : <div className="empty-msg"><h1>CNPJ NÃO POSSUI CONTRATOS ATIVOS</h1></div>
         }
         <div className="btn-container">
-          {contratos.length > 0 ?
+          {userContracts.length > 0 ?
             <>
               <button className='prev' onClick={(e) => handlePrev()}>Anterior</button>
               <button className='next' onClick={(e) => handleNext()}>Próximo</button>
