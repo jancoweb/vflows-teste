@@ -58,12 +58,7 @@ function DadosNF() {
     if (validateForm(data, formRef)) return
     data.file = selected
     console.log(data);
-    // clearAll()
-    // alert('Solicitação 999999 foi enviada com sucesso.')
     setSuccess(true)
-    // setTimeout(() => {
-    //   window.location.reload()
-    // }, 1000)
   }
 
   return (
