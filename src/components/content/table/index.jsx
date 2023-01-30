@@ -1,30 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../../context/useGlobalContext";
-import api from "../../../services/api";
 import { clearAll, getItem, saveItem } from "../../../services/localStorage";
 import DetailModal from "../../modal/details";
 import ErrorModal from "../../modal/error";
 
 function Table() {
 
-  const { contratos, setContratos, setNotaFiscal, notaFiscal, error, setError, details, setDetails } = useGlobalContext();
+  const { setNotaFiscal, notaFiscal, error, setError, details, setDetails } = useGlobalContext();
+  const contratos = [{ id: 1, cnpj: 1111111111111, name: 'teste', codigo: '123', ret: '50%' }, { id: 2, cnpj: 1111111111111, name: 'azul', codigo: '456', ret: '100%' }];
+
   const navigate = useNavigate();
 
-  async function getUserContracts(cnpj) {
-    try {
-      const response = await api.get('/user-contracts', {
-        cnpj: cnpj
-      });
-      // array de contratos vindo da API
-      const data = response.data.contratos;
-      setContratos(data);
-
-    } catch (error) {
-      console.log(error.message)
-    }
+  function getUserContracts(cnpj) {
+    const userContracts = contratos.filter((contrato) => { return contrato.cnpj == cnpj });
+    saveItem('userContracts', JSON.stringify(userContracts));
   }
+
   const user = JSON.parse(getItem('user'));
   getUserContracts(user.cnpj)
+  const userContracts = JSON.parse(getItem('userContracts'));
 
   function handlePrev() {
     clearAll();
@@ -33,7 +27,7 @@ function Table() {
 
   function handleChange(e) {
     const id = e.target.id;
-    const found = contratos.find((contrato) => { return contrato.id == id });
+    const found = userContracts.find((contrato) => { return contrato.id == id });
     setNotaFiscal([...notaFiscal, found]);
   }
 
@@ -59,7 +53,7 @@ function Table() {
 
   function handleDetails(e) {
     const id = e.target.id;
-    const detail = contratos.find((contrato) => { return contrato.id == id });
+    const detail = userContracts.find((contrato) => { return contrato.id == id });
     return setDetails(detail)
   }
 
@@ -74,7 +68,7 @@ function Table() {
       {details && <DetailModal />}
       {error && <ErrorModal />}
       <div className="data-container">
-        {contratos.length > 0 ? contratos.map(contrato => {
+        {userContracts.length > 0 ? userContracts.map(contrato => {
           return (
             <div key={contrato.id} className="data">
               <div className="input-name-container">

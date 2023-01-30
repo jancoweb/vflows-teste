@@ -2,7 +2,6 @@ import '../../styles/loginPageStyle/loginStyles.css'
 import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { saveItem } from '../../services/localStorage';
-import api from '../../services/api';
 import { Form } from '@unform/web';
 import Input from '../../components/Input/input';
 import { useRef } from 'react';
@@ -11,46 +10,20 @@ function LoginPage() {
   const navigate = useNavigate();
   const formRef = useRef(null);
 
-  async function login(data) {
-    const cnpj = data.cnpj
+  const usersArr = [{ cnpj: 1111111111111, razaoSocial: 'User de teste n1 LTDA', nomeFantasia: 'Usuário de teste 1' }, { cnpj: 2222222222222, razaoSocial: 'User n2 COPR', nomeFantasia: 'Usuário de teste 2' }, { cnpj: 3333333333333, razaoSocial: 'User n3', nomeFantasia: 'Usuário de teste 3' }];
+
+  function login(data) {
+    const cnpj = data.cnpj;
     if (cnpj.length !== 13) {
-      formRef.current.setFieldError('cnpj', 'CNPJ inválido')
+      formRef.current.setFieldError('cnpj', 'CNPJ inválido');
       return
     }
 
-    // EXEMPLO DE LOGIN BEM SUCEDIDO
-    const user = {
-      cnpj: cnpj,
-      razaoSocial: 'EMPRESA TESTE',
-      nomeFantasia: 'EMPRESA QUE ESTOU TESTANDO'
-    }
+    const user = usersArr.find((user) => { return user.cnpj == cnpj });
+    if (!user) return formRef.current.setFieldError('cnpj', 'Usuário não encontrado!');
+
     saveItem('user', JSON.stringify(user));
     navigate('/home');
-
-    // EXEMPLO DE LOGIN COM VALIDAÇÃO DA API
-    async function getUserData(cnpj) {
-      try {
-        const response = await api.post('/login', {
-          cnpj: cnpj
-        });
-        // coletando informações do usuário da API
-        const user = {
-          cnpj: cnpj,
-          razaoSocial: response.data.user.razaoSocial,
-          nomeFantasia: response.data.user.nomeFantasia
-        }
-        // salvando informações do usuário no localStorage
-        saveItem('user', JSON.stringify(user));
-        navigate('/home');
-
-      } catch (error) {
-        console.log(error.message)
-
-        // EXEMPLO DE ERRO CASO NÃO CONSIGA LOGIN
-        // formRef.current.setFieldError('cnpj', 'CNPJ não encontrado')
-      }
-    }
-    getUserData(cnpj)
   }
 
   return (
