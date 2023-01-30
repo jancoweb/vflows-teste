@@ -8,10 +8,13 @@ import { getItem, removeItem, clearAll } from "../../services/localStorage";
 import '../../styles/DadosPage/nfStyles.css'
 import CurrencyInput from "../../components/Input/currencyInput";
 import validateForm from "../../services/formValidation";
+import SuccessModal from "../../components/modal/success";
 
 function DadosNF() {
+
+  const [selected, setSelected] = useState([])
   const formRef = useRef(null);
-  const { setNotaFiscal } = useGlobalContext();
+  const { setNotaFiscal, setSuccess, success } = useGlobalContext();
   const navigate = useNavigate();
 
   const [taxes, setTaxes] = useState(false);
@@ -41,22 +44,37 @@ function DadosNF() {
     setRetValue(result)
   }
 
+  function handleSelect(e) {
+    setSelected([...selected, e.target.files[0].name])
+    // console.log(e.target.files)
+  }
+  function handleDeleteSelected(e, target) {
+    e.preventDefault()
+    let newSelected = selected.filter((item) => { return item !== target })
+    setSelected(newSelected)
+  }
+
   function sendData(data) {
     if (validateForm(data, formRef)) return
+    data.file = selected
     console.log(data);
-    clearAll()
-    alert('Solicitação 999999 foi enviada com sucesso.')
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000)
+    // clearAll()
+    // alert('Solicitação 999999 foi enviada com sucesso.')
+    setSuccess(true)
+    // setTimeout(() => {
+    //   window.location.reload()
+    // }, 1000)
   }
 
   return (
-    <div className="Home-wrapper">
+    <div className="Home-wrapper-nf">
       <HomeHeader />
       <div className='content-title'>
         <p>Dados da nota fiscal</p>
       </div>
+      {success &&
+        <SuccessModal />
+      }
       <Form ref={formRef} onSubmit={e => sendData(e)} className="nf-container">
         <div className="nf-header">
           <div className="nf-title">
@@ -143,7 +161,25 @@ function DadosNF() {
           }
         </div>
         <div className="insert-btn-container">
-          <button className="btn-insert">ANEXAR NOTA FISCAL</button>
+          <h4 className="insert-camp">ANEXAR NOTA FISCAL</h4>
+          <div>
+            <Input name='file' type="file" onChange={e => handleSelect(e)} />
+            <div className="files-container">
+              <h4>Arquivos selecionados:</h4>
+              {selected &&
+                selected.map((file) => {
+                  return (
+                    <div className="file-div">
+                      <p>{file}</p>
+                      <button onClick={e => handleDeleteSelected(e, file)}><span className="material-symbols-outlined">
+                        delete
+                      </span></button>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
         </div>
         <div className="btn-container">
           <button className='prev' onClick={() => handlePrev()}>Anterior</button>

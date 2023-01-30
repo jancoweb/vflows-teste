@@ -7,6 +7,7 @@ export function useGlobalProvider() {
   const [notaFiscal, setNotaFiscal] = useState([]);
   const [error, setError] = useState('');
   const [details, setDetails] = useState();
+  const [success, setSuccess] = useState(false)
 
   return {
     contratos,
@@ -16,7 +17,9 @@ export function useGlobalProvider() {
     error,
     setError,
     details,
-    setDetails
+    setDetails,
+    success,
+    setSuccess
   }
 }
 

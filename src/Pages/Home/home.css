@@ -1,6 +1,6 @@
 .Home-wrapper {
   background-color: #fff;
-  height: 720px;
+  min-height: 720px;
   width: 1280px;
   display: flex;
   flex-direction: column;

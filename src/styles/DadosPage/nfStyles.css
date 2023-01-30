@@ -1,5 +1,11 @@
-.Home-wrapper {
-  height: 100vh;
+.Home-wrapper-nf {
+  min-height: 100vh;
+  background-color: #fff;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .content-title {
@@ -15,7 +21,7 @@
   border-radius: 8px;
   width: 100%;
   height: 100%;
-  padding: 0 80px;
+  padding: 10px 80px;
 }
 .nf-container .nf-header {
   display: flex;
@@ -126,11 +132,40 @@
   font-size: 18px;
   outline: none;
 }
-.nf-container .btn-insert {
-  width: 250px;
-  height: 40px;
+.nf-container .insert-btn-container {
+  display: flex;
+  gap: 20px;
 }
-.nf-container .btn-insert:hover {
+.nf-container .insert-btn-container .insert-camp {
+  background-color: #67685a;
+  height: 30px;
+  padding: 8px;
+  color: #fff;
+}
+.nf-container .insert-btn-container .files-container {
+  margin-top: 10px;
+}
+.nf-container .insert-btn-container .files-container .file-div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.nf-container .insert-btn-container .files-container .file-div button {
+  border: none;
+}
+.nf-container .insert-btn-container .files-container .file-div button:hover {
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+}
+.nf-container .insert-btn-container .files-container .file-div button span {
+  font-size: 20px;
+}
+.nf-container .insert-btn-container .btn-insert {
+  width: 250px;
+  height: 30px;
+}
+.nf-container .insert-btn-container .btn-insert:hover {
   cursor: pointer;
 }
 
