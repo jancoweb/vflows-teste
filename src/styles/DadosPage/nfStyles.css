@@ -32,10 +32,10 @@
 }
 .nf-container .nf-data {
   display: flex;
-  align-items: center;
   justify-content: center;
   gap: 100px;
   width: 100%;
+  height: 100px;
 }
 .nf-container .nf-data div {
   display: flex;
@@ -74,6 +74,11 @@
 .nf-container .taxes .hidden-form-container .hidden-form div {
   display: flex;
   flex-direction: column;
+  height: 80px;
+}
+.nf-container .taxes .hidden-form-container .hidden-form div span {
+  width: 120px;
+  font-size: 14px;
 }
 .nf-container .taxes .hidden-form-container .hidden-form div input {
   width: 120px;

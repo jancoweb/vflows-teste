@@ -31,10 +31,10 @@
         font-weight: normal
   .nf-data
       @include flex
-      align-items: center
       justify-content: center
       gap: 100px
       width: 100%
+      height: 100px
       div
         @include flex-col
         input
@@ -63,6 +63,10 @@
         justify-content: space-around
         div
           @include flex-col
+          height: 80px
+          span
+            width: 120px
+            font-size: 14px
           input
             width: 120px
             font-size: 18px

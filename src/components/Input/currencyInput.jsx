@@ -4,7 +4,7 @@ import CInput from 'react-currency-masked-input'
 
 export default function CurrencyInput({ name, ...rest }) {
   const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error, clearError } = useField(name);
 
   useEffect(() => {
     registerField({ name: fieldName, ref: inputRef.current, path: 'value' })
@@ -12,7 +12,7 @@ export default function CurrencyInput({ name, ...rest }) {
 
   return (
     <div className='input-container'>
-      <CInput ref={inputRef} {...rest} />
+      <CInput ref={inputRef} onFocus={clearError} {...rest} />
       <br />
       {
         error &&

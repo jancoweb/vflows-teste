@@ -1,20 +1,22 @@
 import { Form } from "@unform/web";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HomeHeader from "../../components/header";
 import Input from "../../components/Input/input";
 import { useGlobalContext } from "../../context/useGlobalContext";
-import { getItem, removeItem } from "../../services/localStorage";
+import { getItem, removeItem, clearAll } from "../../services/localStorage";
 import '../../styles/DadosPage/nfStyles.css'
 import CurrencyInput from "../../components/Input/currencyInput";
+import validateForm from "../../services/formValidation";
 
 function DadosNF() {
+  const formRef = useRef(null);
   const { setNotaFiscal } = useGlobalContext();
   const navigate = useNavigate();
 
   const [taxes, setTaxes] = useState(false);
   const [ret, setRet] = useState(false);
-  const [retValue, setRetValue] = useState();
+  const [retValue, setRetValue] = useState(Number);
 
   function handleShowMenu(e) {
     if (e.target.name == 'taxes') {
@@ -36,19 +38,26 @@ function DadosNF() {
     let v1 = e.target.value
     let div = (nf.ret).replace('%', '')
     let result = (v1 * 10) * (div / 100)
-    setRetValue(result.toFixed(2))
+    setRetValue(result)
   }
 
-  function handleNext(data) {
-    console.log(data)
+  function sendData(data) {
+    if (validateForm(data, formRef)) return
+    console.log(data);
+    clearAll()
+    alert('Solicitação 999999 foi enviada com sucesso.')
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
   }
+
   return (
     <div className="Home-wrapper">
       <HomeHeader />
       <div className='content-title'>
         <p>Dados da nota fiscal</p>
       </div>
-      <Form onSubmit={handleNext} className="nf-container">
+      <Form ref={formRef} onSubmit={e => sendData(e)} className="nf-container">
         <div className="nf-header">
           <div className="nf-title">
             <p>Código do contrato: <span>{nf.codigo}</span></p>
@@ -123,7 +132,7 @@ function DadosNF() {
               <div className="hidden-form2">
                 <div>
                   <label>Valor</label>
-                  <Input type="text" name='retValue' readOnly defaultValue={`R$ ${retValue}`} />
+                  <Input type="text" name='retValue' readOnly value={`R$ ${retValue.toFixed(2)}`} />
                 </div>
                 <div>
                   <label>Percentual</label>

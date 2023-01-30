@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 
 export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue, error, clearError } = useField(name);
 
   useEffect(() => {
     registerField({ name: fieldName, ref: inputRef.current, path: 'value' })
@@ -11,7 +11,7 @@ export default function Input({ name, ...rest }) {
 
   return (
     <div className='input-container'>
-      <input ref={inputRef} {...rest} />
+      <input ref={inputRef} onFocus={clearError} {...rest} />
       <br />
       {
         error &&
